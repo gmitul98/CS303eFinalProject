@@ -103,7 +103,9 @@ class FinalBoss(object):
             print()
 
     def grandmasterdeath(self):
-        print("storyline goes here")
+        self.typeWriter('\nThe Grandmaster stumbles, frantically scrambling to find something to hold him up as he falls.\n This is it. You dash for him,' 
+                        ' delivering one last blow, and watch him fall.\n The world around you fades to black and then zones back to reality'
+                        '. It is done. The game is won.\n', isColored=True)
 
     def battle(self):
         self.typeWriter('The Grandmaster swipes at you and you dodge at the last second.\n', isColored=True)
