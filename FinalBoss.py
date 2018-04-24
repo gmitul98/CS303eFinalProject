@@ -24,10 +24,10 @@ class FinalBoss(object):
                 print(letter, end='', flush=True)
 
     def dodge(self):
-        self.typeWriter('He swipes at you, what direction do you want to dodge?', isColored=True)
+        self.typeWriter('\nHe swipes at you, what direction do you want to dodge?', isColored=True)
         self.typeWriter('\n\nA) Duck Right. \nB) Roll Left. \nC) Stand your ground. He is expecting you to dodge.\n')
         while True:
-            user_choice = input()
+            user_choice = input().upper()
             if user_choice == 'A' or user_choice == 'B' or user_choice == 'C':
                 break
             else:
@@ -43,27 +43,27 @@ class FinalBoss(object):
 
     def grandmaster_damage(self, grandmaster_health, damage):
         grandmaster_health -= damage
-        self.typeWriter('The Grandmaster has taken ' + str(damage) + ' damage\n', isColored=True)
+        self.typeWriter('\nThe Grandmaster has taken ' + str(damage) + ' damage\n', isColored=True)
         if grandmaster_health>60:
             self.typeWriter("You've barely made a dent, he smiles and charges at you again. ")
 
         elif grandmaster_health>30:
-            self.typeWriter("His actions seem to be slowing as various wounds on his body bleed out. \nYou must keep "
+            self.typeWriter("\nHis actions seem to be slowing as various wounds on his body bleed out. \nYou must keep "
                             "fighting. He charges, no longer having that smirk on his face. ")
 
         elif grandmaster_health>0:
-            self.typeWriter("He seems as if he is about to faint, but he picks himself back up. He looks at you with "
+            self.typeWriter("\nHe seems as if he is about to faint, but he picks himself back up. He looks at you with "
                             "a deathly glare. \nThe world around you is fading closer to reality and freedom is within "
                             "reach \n", isColored=True)
 
         return grandmaster_health
 
     def attack(self, grandmaster_health):
-        self.typeWriter('He appears to be tired as he lays down after his last swipe. This is your chance to attack!'
+        self.typeWriter('\nHe appears to be tired as he lays down after his last swipe. This is your chance to attack!'
                         ' Where do you attack him?\n', isColored=True)
         self.typeWriter('\n\nA) Arms \nB) Legs \nC) Chest\n\n')
         while True:
-            user_choice = input()
+            user_choice = input().upper()
             if user_choice == 'A' or user_choice == 'B' or user_choice == 'C':
                 break
             else:
@@ -74,21 +74,21 @@ class FinalBoss(object):
 
         if directions.index(user_choice) == weakness:
             damage=(float(self.user.returnDamage())*3)
-            self.typeWriter('The Grandmaster stumbles and stares at you in confusion, wondering how you knew that was '
+            self.typeWriter('\nThe Grandmaster stumbles and stares at you in confusion, wondering how you knew that was '
                             'his current weakness\n', isColored=True)
             grandmaster_health=self.grandmaster_damage(grandmaster_health, damage)
 
         else:
             damage = (float(self.user.returnDamage()))
-            self.typeWriter('The Grandmaster grins and gets to his feet as you charge. Side stepping his next attack'
+            self.typeWriter('\nThe Grandmaster grins and gets to his feet as you charge. Side stepping his next attack'
                             ', you hesitate and barely graze him.\n')
             grandmaster_health=self.grandmaster_damage(grandmaster_health, damage)
 
         return grandmaster_health
 
     def death(self):
-        self.typeWriter('\n\nYou\'ll never make it back to reality and you are out of lives.'
-                        'You stumble around as the world starts to fade to black...')
+        self.typeWriter('\nYou\'ll never make it back to reality and you are out of lives.'
+                        ' You stumble around as the world starts to fade to black...')
 
     def takedamage(self):
         damage=random.randint(0,30)
@@ -103,9 +103,8 @@ class FinalBoss(object):
             print()
 
     def grandmasterdeath(self):
-        self.typeWriter('\nThe Grandmaster stumbles, frantically scrambling to find something to hold him up as he falls.\n This is it. You dash for him,' 
-                        ' delivering one last blow, and watch him fall.\n The world around you fades to black and then zones back to reality'
-                        '. It is done. The game is won.\n', isColored=True)
+        self.typeWriter('\nThe Grandmaster stumbles, frantically scrambling to find something to hold him up as he falls.\nThis is it. You dash for him,' 
+                        ' delivering one last blow, and watch him fall.', isColored=True)
 
     def battle(self):
         self.typeWriter('The Grandmaster swipes at you and you dodge at the last second.\n', isColored=True)
@@ -115,16 +114,16 @@ class FinalBoss(object):
             dodge=self.dodge()
             if not dodge:
                 self.takedamage()
-                self.typeWriter("He knew where to attack too well, he hits you and you are knocked to your feet, but"
+                self.typeWriter("\nHe knew where to attack too well, he hits you and you are knocked to your feet, but"
                                 " you keep looking for an opening\n")
             if dodge:
-                self.typeWriter('Almost as if you could read his mind, you avoid his attack and look for an opening. \n')
+                self.typeWriter('\nAlmost as if you could read his mind, you avoid his attack and look for an opening. \n')
             opening=False
             if random.randint(1,2)==2: opening=True
             if opening:
                 grandmaster_health = self.attack(grandmaster_health)
             else:
-                self.typeWriter('You must bide your time, there is no opening in sight, death looks you in the face as '
+                self.typeWriter('\nYou must bide your time, there is no opening in sight, death looks you in the face as '
                                 'he charges you again.\n')
             if grandmaster_health<=0:
                 self.grandmasterdeath()
@@ -137,14 +136,14 @@ class FinalBoss(object):
                 return result
 
     def run(self):
-        self.typeWriter('As you look around, you can see the fabric of reality and the game almost mixing.\n', isColored=True)
+        self.typeWriter('\n\nAs you look around, you can see the fabric of reality and the game almost mixing.\n', isColored=True)
         self.typeWriter('This is your path to escape and you know it.\n')
 
-        self.typeWriter('A huge laugh fills the room, and the Grandmaster looks you dead in the eyes with a cold '
+        self.typeWriter('\nA huge laugh fills the room, and the Grandmaster looks you dead in the eyes with a cold '
                         'expression on his face.\n\n')
         self.typeWriter('You never should have come to my realm, this will be the end of you!\n\n', isColored=True)
 
         result=self.battle()
-        if result=="failure":
-            return result
+
+        return result
 
