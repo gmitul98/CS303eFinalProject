@@ -36,6 +36,9 @@ class User(object):
     def returnName(self):
         return self.name
 
+    def returnHealth(self):
+        return self.health
+
     def returnType(self):
         return self.type
 
@@ -78,3 +81,6 @@ class User(object):
             self.loseLife()
             self.changinghealth=self.health
             return lifelost
+
+    def resetLives(self, lives):
+        self.lives = lives
