@@ -3,7 +3,7 @@ from termcolor import *
 import time
 
 
-class SkyKingdom(object):
+class Jungle(object):
 
     def __init__(self, user):
         self.user = user
@@ -13,7 +13,7 @@ class SkyKingdom(object):
         text = colored(text, color, attrs=['bold'])
         return text
 
-    def typeWriter(self, text, isColored=True, lag=0.01, color = 'blue'):
+    def typeWriter(self, text, isColored=True, lag=0.01, color = 'green'):
         text = list(str(text))
         if isColored:
             for letter in text:

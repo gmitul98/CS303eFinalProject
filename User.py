@@ -6,15 +6,12 @@ class User(object):
         self.name = name
 
         if choice == 'A':
-            self.type = 'Archer'
-            self.color = 'red'
-            self.weapon = 'bow and arrow'
+            self.type = 'Ranger'
+            self.color = 'green'
+            self.weapon = 'crossbow'
             self.damage = 30
             self.range = 90
             self.stealth = 60
-            self.health = 60
-            self.changinghealth= 60
-
         elif choice == 'B':
             self.type = 'Sorcerer'
             self.color = 'yellow'
@@ -22,8 +19,6 @@ class User(object):
             self.damage = 90
             self.range = 60
             self.stealth = 30
-            self.health = 40
-            self.changinghealth = 40
         else:
             self.type = 'Assassin'
             self.color = 'magenta'
@@ -31,8 +26,7 @@ class User(object):
             self.damage = 60
             self.range = 30
             self.stealth = 90
-            self.health = 50
-            self.changinghealth = 50
+
     def returnName(self):
         return self.name
 
@@ -57,9 +51,6 @@ class User(object):
     def returnLives(self):
         return self.lives
 
-    def returnChangingHealth(self):
-        return self.changinghealth
-
     def loseLife(self, lostLife = True):
         if lostLife:
             self.lives -= 1
@@ -67,15 +58,3 @@ class User(object):
     def gainLife(self, gainLife = True):
         if gainLife:
             self.lives += 1
-
-    def losehealth(self, damage):
-        self.changinghealth -= damage
-        if self.changinghealth>0:
-            lifelost=False
-            return lifelost
-        else:
-            lifelost=True
-            self.loseLife()
-            self.changinghealth=self.health
-            return lifelost
-

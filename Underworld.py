@@ -2,18 +2,17 @@ from User import User
 from termcolor import *
 import time
 
-
-class SkyKingdom(object):
+class Underworld(object):
 
     def __init__(self, user):
         self.user = user
 
 
-    def colorize(self, text, color = 'blue'):
+    def colorize(self, text, color = 'red'):
         text = colored(text, color, attrs=['bold'])
         return text
 
-    def typeWriter(self, text, isColored=True, lag=0.01, color = 'blue'):
+    def typeWriter(self, text, isColored=True, lag=0.02, color = 'red'):
         text = list(str(text))
         if isColored:
             for letter in text:
@@ -25,7 +24,7 @@ class SkyKingdom(object):
                 print(letter, end='', flush=True)
 
     def run(self):
-        self.typeWriter('Welcome to Sky Kingdom', isColored=True) # greetings
+        self.typeWriter('Welcome to the Underworld', isColored=True) # greetings
         self.battleOne()
         battle_two_result = self.battleTwo()
         if self.user.returnLives() == 0:
@@ -41,10 +40,10 @@ class SkyKingdom(object):
 
         battle_one_result = False #True = success, false = failure
 
-        self.typeWriter('\n\nYou sneak into the castle, but you see a knight '
-                        'standing guard. What do you do? ')
+        self.typeWriter('\n\nYou sneak into the castle of Death, but you see a Demon King '
+                        'standing guard and hungry. What do you do? ')
 
-        self.typeWriter('\n\nA) Attempt close combat \nB) Attempt ranged attack. \nC) Sneak past him.\n\n',isColored=False)
+        self.typeWriter('\n\nA) Attempt close combat. \nB) Attempt ranged attack. \nC) Sneak past him.\n\n',isColored=False)
         while True:
             user_choice = input()
             if user_choice == 'A' or user_choice == 'B' or user_choice == 'C':
@@ -56,7 +55,7 @@ class SkyKingdom(object):
             if self.user.returnDamage() >= 60:
                 self.typeWriter('\nGreat Choice, ')
                 self.typeWriter(self.user.returnType() + ' ' + self.user.returnName(), color=self.user.returnColor())
-                self.typeWriter('\nYou defeated the knight!!')
+                self.typeWriter('\nYou defeated the Demon King!!')
                 battle_one_result = True
                 return battle_one_result
             else:
@@ -64,7 +63,7 @@ class SkyKingdom(object):
                 self.typeWriter(self.user.returnType(),color=self.user.returnColor())
                 self.typeWriter(', your damage is ')
                 self.typeWriter(self.user.returnDamage(), color=self.user.returnColor())
-                self.typeWriter(', which wasn\'t enough to defeat the knight. \n\nYou have lost a life!')
+                self.typeWriter(', which wasn\'t enough to defeat the Demon King. \n\nYou have lost a life!')
 
                 self.user.loseLife()
                 self.typeWriter('\nLives left: ')
@@ -75,7 +74,7 @@ class SkyKingdom(object):
             if self.user.returnRange() >= 60:
                 self.typeWriter('\nGreat Choice, ')
                 self.typeWriter(self.user.returnType() + ' ' + self.user.returnName(), color=self.user.returnColor())
-                self.typeWriter('\nYou defeated the knight!!')
+                self.typeWriter('\nYou defeated the Demon King!!')
                 battle_one_result = True
                 return battle_one_result
             else:
@@ -83,7 +82,7 @@ class SkyKingdom(object):
                 self.typeWriter(self.user.returnType(),color=self.user.returnColor())
                 self.typeWriter(', your range is ')
                 self.typeWriter(self.user.returnRange(), color=self.user.returnColor())
-                self.typeWriter(', which wasn\'t enough to defeat the knight. \n\nYou have lost a life!')
+                self.typeWriter(', which wasn\'t enough to defeat the Demon King. \n\nYou have lost a life!')
 
                 self.user.loseLife()
                 self.typeWriter('\nLives left: ')
@@ -94,7 +93,7 @@ class SkyKingdom(object):
             if self.user.returnStealth() >= 60:
                 self.typeWriter('\nGreat Choice, ')
                 self.typeWriter(self.user.returnType() + ' ' + self.user.returnName(), color=self.user.returnColor())
-                self.typeWriter('\nYou snuck past the knight!!')
+                self.typeWriter('\nYou snuck past the Demon King!!')
                 battle_one_result = True
                 return battle_one_result
             else:
@@ -102,8 +101,8 @@ class SkyKingdom(object):
                 self.typeWriter(self.user.returnType(),color=self.user.returnColor())
                 self.typeWriter(', your stealth is ')
                 self.typeWriter(self.user.returnStealth(), color=self.user.returnColor())
-                self.typeWriter(', which wasn\'t enough to sneak past the knight. '
-                                'He discovers you.\n\nYou have lost a life!')
+                self.typeWriter(', which wasn\'t enough to sneak past the Demon King. '
+                                '\n\nYou have lost a life!')
 
                 self.user.loseLife()
                 self.typeWriter('\nLives left: ')
@@ -114,14 +113,16 @@ class SkyKingdom(object):
 
         battle_two_result = False #True = success, false = failure
 
-        self.typeWriter('\n\nYou wander around and finally, you see the king of Sky Kingdom on his throne '
-                        'with his soldiers around him. '
-                        '\nIt is rumored that the King holds a special gem which will '
-                        'allow people to transcend the world.\n'
-                        'You know the king is kind, but he rules with an iron fist. What should you do? ')
+        self.typeWriter('\n\nYou wander around and finally, you see the Father of all Demons and the'
+                        'King of the Underworld on his throne'
+                        ' with his mightiest children around him. '
+                        '\nIt is rumored that the heart of King of all Demons, Hydra, is a special gem which will '
+                        'allow people to return back to the world.\n'
+                        'You know the king is destructive and merciless, '
+                        'and he rules the world with his Bubble Horns. What would you do? ')
 
-        self.typeWriter('\n\nA) Fight the troops. \nB) Send in your friend to '
-                        'distract them while you ambush from the window. \nC) Steal the gem.\n\n',isColored=False)
+        self.typeWriter('\n\nA) Destroy his army. \nB) Send in your dogs to '
+                        'distract them while you ambush from the back. \nC) Kill and take his heart.\n\n',isColored=False)
         while True:
             user_choice = input()
             if user_choice == 'A' or user_choice == 'B' or user_choice == 'C':
@@ -133,7 +134,7 @@ class SkyKingdom(object):
             if self.user.returnDamage() >= 60:
                 self.typeWriter('\nGreat Choice, ')
                 self.typeWriter(self.user.returnType() + ' ' + self.user.returnName(), color=self.user.returnColor())
-                self.typeWriter('\nYou defeated the King! You have free reign to look around for the gem.')
+                self.typeWriter('\nYou defeated the Demon King!!!. You now have the magical Gem')
                 battle_two_result = True
                 return battle_two_result
             else:
@@ -141,8 +142,8 @@ class SkyKingdom(object):
                 self.typeWriter(self.user.returnType(),color=self.user.returnColor())
                 self.typeWriter(', your damage is ')
                 self.typeWriter(self.user.returnDamage(), color=self.user.returnColor())
-                self.typeWriter(', which wasn\'t enough to defeat the king and his troops.'
-                                ' The King captures you. \n\nYou have lost a life!')
+                self.typeWriter(', which wasn\'t enough to defeat the Demon King and his children.'
+                                ' The King rips your finger off. \n\nYou have lost a life!')
 
                 self.user.loseLife()
                 self.typeWriter('\nLives left: ')
@@ -153,8 +154,8 @@ class SkyKingdom(object):
             if self.user.returnRange() >= 60:
                 self.typeWriter('\nGreat Choice, ')
                 self.typeWriter(self.user.returnType() + ' ' + self.user.returnName(), color=self.user.returnColor())
-                self.typeWriter('\nYou have successfully ambushed the king and his troops. '
-                                'You force him to hand over the gem!')
+                self.typeWriter('\nYou have successfully ambushed the King!!!. '
+                                'You now have the magical Gem')
                 battle_two_result = True
                 return battle_two_result
             else:
@@ -162,8 +163,8 @@ class SkyKingdom(object):
                 self.typeWriter(self.user.returnType(),color=self.user.returnColor())
                 self.typeWriter(', your range is ')
                 self.typeWriter(self.user.returnRange(), color=self.user.returnColor())
-                self.typeWriter(', which wasn\'t enough to ambush the King and his troops.'
-                                'You and you friend get captured. \n\nYou have lost a life!')
+                self.typeWriter(', which wasn\'t enough to ambush the Demon King and his children.'
+                                'You lost your toenail. \n\nYou have lost a life!')
 
                 self.user.loseLife()
                 self.typeWriter('\nLives left: ')
@@ -174,7 +175,7 @@ class SkyKingdom(object):
             if self.user.returnStealth() >= 60:
                 self.typeWriter('\nGreat Choice, ')
                 self.typeWriter(self.user.returnType() + ' ' + self.user.returnName(), color=self.user.returnColor())
-                self.typeWriter('\nYou have successfully stolen the gem!! Time to go back!')
+                self.typeWriter('\nYou have killed Hydra and stole his heart!')
                 battle_two_result = True
                 return battle_two_result
             else:
@@ -182,8 +183,8 @@ class SkyKingdom(object):
                 self.typeWriter(self.user.returnType(), color=self.user.returnColor())
                 self.typeWriter(', your stealth is ')
                 self.typeWriter(self.user.returnStealth(), color=self.user.returnColor())
-                self.typeWriter(', which wasn\'t enough to sneak past the King and his troops and '
-                                'steal the gem. The King captures you.\n\nYou have lost a life!')
+                self.typeWriter(', which wasn\'t enough to sneak up to the Demon King. '
+                                'You and your friends got captured.\n\nYou have lost a life!')
 
                 self.user.loseLife()
                 self.typeWriter('\nLives left: ')
@@ -196,18 +197,10 @@ class SkyKingdom(object):
 
     def discoverGem(self, battle_two_result):
         if battle_two_result:
-            self.typeWriter('\n\nCongrats, you have collected the gem and beat the Sky Kingdom quest!!\n')
+            self.typeWriter('\n\nCongrats child, you have collected the magical gem and completed'
+                            ' the Underworld quest!!!\n')
         else:
             self.typeWriter('\n\nWhile in the King\'s captivity, you regret your actions and ask to speak to'
-                            ' the King. You explain your situation to him. \nSurprisingly, the King breaks down '
-                            'in tears. He is also in the same situation as you, but he grew attached'
-                            '\nto the people here so he never left. He understands your pain and offers to forgive you'
-                            ' and give you the gem.\n'
-                            'Congrats, you have collected the gem and beat the Sky Kingdom quest!!\n', lag=0.02)
+                            ' the King. However, as merciless and destructive as he is, he decides to kill'
+                            ' you on the spot and devours your body and your friends\'', lag=0.02)
 
-# main test function
-'''def main():
-    user = User('Bobby', 'B')
-    world = SkyKingdom(user)
-    world.run()
-main()'''

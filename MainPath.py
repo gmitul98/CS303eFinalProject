@@ -1,16 +1,16 @@
 from User import User
 from SkyKingdom import SkyKingdom
-from FinalBoss import FinalBoss
+from Underworld import Underworld
+from Jungle import Jungle
 from termcolor import *
 import time
-
 
 # general task functions + non sequential functions
 def colorize(text, user_class):
     text = colored(text, user_class.returnColor(), attrs=['bold'])
     return text
 
-def typeWriter(text, user = None, lag = 0.02):
+def typeWriter(text, user = None, lag = 0.01):
     text = list(str(text))
     if user == None:
         for letter in text:
@@ -79,7 +79,7 @@ def show_additional_stats(user):
 def choosePath(user_class):
     typeWriter('\n\nStory here.......')
     chosen_path = ''
-    while chosen_path != 'A' and chosen_path != 'B' and chosen_path != 'C':
+    while chosen_path != 'A' and chosen_path != 'B':
         typeWriter('Which realm would you like to enter?'
                             '\n A) Sky Kingdom \n B) The Underworld \n C) The Jungle\n\n')
         chosen_path = input()
@@ -105,23 +105,23 @@ def main():
     chosen_path = choosePath(user)
     user_result = ''
     if chosen_path == 'A':
-        typeWriter('\nYou have chosen Sky Kingdom')
+        typeWriter('\nYou have been teleported to the Sky Kingdom')
         typeWriter('\n\n  The Virtual World is Generating')
         typeWriter('...\n\n', lag = 1)
         world = SkyKingdom(user)
         user_result = world.run()
     elif chosen_path == 'B':
-        typeWriter('\nYou have chosen The Underworld')
+        typeWriter('\nYou have been teleported to The Underworld')
         typeWriter('\n\n  The Virtual World is Generating')
         typeWriter('...\n\n', lag=1)
-        #world = Underworld(user)
-        #world.run()
+        world = Underworld(user)
+        user_result = world.run()
     elif chosen_path == 'C':
-        typeWriter('\nYou have chosen The Jungle')
+        typeWriter('\nYou have been teleported to The Jungle')
         typeWriter('\n\n  The Virtual World is Generating')
         typeWriter('...\n\n', lag=1)
-        #world = Jungle(user)
-        #world.run()
+        world = Jungle(user)
+        user_result = world.run()
 
     # failure or final boss battle
     if user_result == 'failure':
@@ -138,13 +138,8 @@ def main():
                    '\n\n"The next challenger is ')
         typeWriter(user.returnName(), user = user)
         typeWriter('! Let\'s see if he has what it takes to defeat the Grandmaster!"\n\n')
-        world = FinalBoss(user)
-        user_result = world.run()
-        if user_result=="failure":
-            typeWriter('\n\nThanks for playing!')
-            typeWriter('\n\nPlay again? (Y or N)\n')
-            playagain = input()
-            if playagain:
-                main()
+        #finalBoss = finalBoss(user)
+        #finalBoss.run()
+
 
 main()
