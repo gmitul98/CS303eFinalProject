@@ -2,6 +2,7 @@ from User import User
 from SkyKingdom import SkyKingdom
 from Underworld import Underworld
 from Jungle import Jungle
+from FinalBoss import FinalBoss
 from termcolor import *
 import time
 
@@ -138,8 +139,14 @@ def main():
                    '\n\n"The next challenger is ')
         typeWriter(user.returnName(), user = user)
         typeWriter('! Let\'s see if he has what it takes to defeat the Grandmaster!"\n\n')
-        #finalBoss = finalBoss(user)
-        #finalBoss.run()
+        final_battle = FinalBoss(user)
+        user_result = final_battle.run()
+        if user_result=="failure":
+            typeWriter('\n\nThanks for playing!')
+            typeWriter('\n\nPlay again? (Y or N)\n')
+            playagain = input()
+            if playagain:
+                main()
 
 
 main()
