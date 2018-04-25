@@ -36,7 +36,7 @@ def startofgame_greetings():
     typeWriter('Ahh. The smell of coffee is always the best. \nIt\'s 7am and you\'ve just walked into your local Starbucks.' 
                '\nTo get through your Monday morning, you have to start it off strong.' 
                '\n\nYour\'re up to order: ')
-    typeWriter('\n\n"A white chocolate mocha please."', bold=True)
+    typeWriter('\n\n"A White Chocolate Mocha please."', bold=True)
     typeWriter('\n\n"Could I get a name for that order?" ', bold=True)
 
 def get_user_name():
