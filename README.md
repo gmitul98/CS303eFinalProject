@@ -1,1 +1,1 @@
-# Text-Based Game for CS303E based on a fantasy world.
+# Text-based game for CS303E project based on a fantasy world.
