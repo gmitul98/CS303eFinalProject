@@ -5,6 +5,8 @@ from getaway import getaway
 from FinalBoss import FinalBoss
 from termcolor import *
 import time
+import config
+
 
 # general task functions + non sequential functions
 def colorize(text, user_class):
@@ -15,7 +17,7 @@ def boldIt(text):
     text = colored(text,attrs=['bold'])
     return text
 
-def typeWriter(text, user = None, lag = 0.0, bold = False):
+def typeWriter(text, user = None, lag = config.lag, bold = False):
     text = list(str(text))
     if user == None:
         for letter in text:
@@ -105,17 +107,17 @@ def choosePath(user_class):
     typeWriter('\n\nYou finally emerge on land and you begin exploring.\nYou eventually come across an ancient text. '
                'It reads:\n -- Scattered around this world are three heavenly gems.'
                ' They are said to allow people to transcend this world. There'
-               ' is one in each realm: \nSky Kingdom\nThe Underworld\nThe Jungle\n\n'
+               ' is one in each realm: \nSky Kingdom\nThe Underworld\n'
                'You know this is your one chance to return to reality.\n\n')
     chosen_path = ''
-    while chosen_path != 'A' and chosen_path != 'B' and chosen_path != 'C':
+    while chosen_path != 'A' and chosen_path != 'B':
         typeWriter('Which realm would you like to enter?'
-                            '\n A) Sky Kingdom \n B) The Underworld \n C) The Jungle\n\n')
+                            '\n A) Sky Kingdom \n B) The Underworld\n\n')
         chosen_path = input().upper()
     return chosen_path
 
 def win():
-    typeWriter('\n The world around you fades to black and then zones back to reality'
+    typeWriter('\n\nThe world around you fades to black and then zones back to reality'
                         '. It is done. The game is won.\n')
 def death():
     typeWriter('\n\nYou\'ll never make it back to reality.'
@@ -160,14 +162,8 @@ def main():
         elif chosen_path == 'B':
             typeWriter('\nYou have been teleported to The Underworld')
             typeWriter('\n\n  The Virtual World is Generating')
-            typeWriter('...\n\n', lag=1)
+            typeWriter('...\n\n', lag=0.5)
             world = Underworld(user)
-            user_result = world.run()
-        elif chosen_path == 'C':
-            typeWriter('\nYou have been teleported to The Jungle')
-            typeWriter('\n\n  The Virtual World is Generating')
-            typeWriter('...\n\n', lag=1)
-            world = getaway(user)
             user_result = world.run()
 
         # failure or final boss battle
@@ -183,7 +179,7 @@ def main():
         # final boss battle
         else:
             typeWriter('\n\nYou activate the gem to return home')
-            typeWriter('..\n\n', lag=1)
+            typeWriter('..\n\n', lag=0.5)
             typeWriter('What??? \nInstead of returning home, you are teleported to a strange'
                        ' arena. \nLights flash on and you are ushered into the middle.'
                        '\n\n"The next challenger is ')
