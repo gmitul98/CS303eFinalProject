@@ -203,5 +203,5 @@ class Underworld(object):
         else:
             self.typeWriter('\n\nWhile in the King\'s captivity, you regret your actions and ask to speak to'
                             ' the King. However, as merciless and destructive as he is, he decides to kill'
-                            ' you on the spot and devours your body and your friends\'')
+                            ' you on the spot. Suddenly, an angel comes to save you and hands you the sacred gem.\'')
 
