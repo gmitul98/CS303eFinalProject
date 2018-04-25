@@ -1,7 +1,7 @@
 from termcolor import *
 import time
 import random
-
+import config
 
 class FinalBoss(object):
 
@@ -12,7 +12,7 @@ class FinalBoss(object):
         text = colored(text, color, attrs=['bold'])
         return text
 
-    def typeWriter(self, text, isColored=False, lag=0.005, color='red'):
+    def typeWriter(self, text, isColored=False, lag=config.lag, color='red'):
         text = list(str(text))
         if isColored:
             for letter in text:
