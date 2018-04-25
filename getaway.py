@@ -1,6 +1,7 @@
 from User import User
 from termcolor import *
 import time, random
+import config
 
 class getaway(object):
 
@@ -11,7 +12,7 @@ class getaway(object):
         text = colored(text, color, attrs=['bold'])
         return text
 
-    def typeWriter(self, text, isColored=True, lag=0, color = 'green'):
+    def typeWriter(self, text, isColored=True, lag=config.lag, color = 'green'):
         text = list(str(text))
         if isColored:
             for letter in text:
