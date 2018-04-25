@@ -1,6 +1,7 @@
 from User import User
 from termcolor import *
 import time
+import config
 
 
 class SkyKingdom(object):
@@ -13,7 +14,7 @@ class SkyKingdom(object):
         text = colored(text, color, attrs=['bold'])
         return text
 
-    def typeWriter(self, text, isColored=True, lag=0.01, color = 'blue'):
+    def typeWriter(self, text, isColored=True, lag=config.lag, color = 'blue'):
         text = list(str(text))
         if isColored:
             for letter in text:
@@ -46,7 +47,7 @@ class SkyKingdom(object):
 
         self.typeWriter('\n\nA) Attempt close combat \nB) Attempt ranged attack. \nC) Sneak past him.\n\n',isColored=False)
         while True:
-            user_choice = input()
+            user_choice = input().upper()
             if user_choice == 'A' or user_choice == 'B' or user_choice == 'C':
                 break
             else:
@@ -123,7 +124,7 @@ class SkyKingdom(object):
         self.typeWriter('\n\nA) Fight the troops. \nB) Send in your friend to '
                         'distract them while you ambush from the window. \nC) Steal the gem.\n\n',isColored=False)
         while True:
-            user_choice = input()
+            user_choice = input().upper()
             if user_choice == 'A' or user_choice == 'B' or user_choice == 'C':
                 break
             else:
@@ -203,7 +204,7 @@ class SkyKingdom(object):
                             'in tears. He is also in the same situation as you, but he grew attached'
                             '\nto the people here so he never left. He understands your pain and offers to forgive you'
                             ' and give you the gem.\n'
-                            'Congrats, you have collected the gem and beat the Sky Kingdom quest!!\n', lag=0.02)
+                            'Congrats, you have collected the gem and beat the Sky Kingdom quest!!\n')
 
 # main test function
 '''def main():
