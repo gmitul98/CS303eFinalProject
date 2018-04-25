@@ -1,7 +1,7 @@
 from User import User
 from SkyKingdom import SkyKingdom
 from Underworld import Underworld
-from Jungle import Jungle
+from getaway import getaway
 from FinalBoss import FinalBoss
 from termcolor import *
 import time
@@ -15,7 +15,7 @@ def boldIt(text):
     text = colored(text,attrs=['bold'])
     return text
 
-def typeWriter(text, user = None, lag = 0.02, bold = False):
+def typeWriter(text, user = None, lag = 0.0, bold = False):
     text = list(str(text))
     if user == None:
         for letter in text:
@@ -102,7 +102,7 @@ def show_additional_stats(user):
     typeWriter(user.returnStealth(), user)
 
 def choosePath(user_class):
-    typeWriter('\n\nYou explore around this new world and you come to an ancient text. '
+    typeWriter('\n\nYou finally emerge on land and you begin exploring.\nYou eventually come across an ancient text. '
                'It reads:\n -- Scattered around this world are three heavenly gems.'
                ' They are said to allow people to transcend this world. There'
                ' is one in each realm: \nSky Kingdom\nThe Underworld\nThe Jungle\n\n'
@@ -114,9 +114,12 @@ def choosePath(user_class):
         chosen_path = input().upper()
     return chosen_path
 
-def win(user):
+def win():
     typeWriter('\n The world around you fades to black and then zones back to reality'
                         '. It is done. The game is won.\n')
+def death():
+    typeWriter('\n\nYou\'ll never make it back to reality.'
+                    'You stumble around as the world starts to fade to black...')
 
 def main():
 
@@ -134,80 +137,94 @@ def main():
     if see_additional_stats == 'Y':
         show_additional_stats(user)
 
-    chosen_path = choosePath(user)
-    user_result = ''
-    if chosen_path == 'A':
-        typeWriter('\nYou have been teleported to the Sky Kingdom')
-        typeWriter('\n\n  The Virtual World is Generating')
-        typeWriter('...\n\n', lag = 1)
-        world = SkyKingdom(user)
-        user_result = world.run()
-    elif chosen_path == 'B':
-        typeWriter('\nYou have been teleported to The Underworld')
-        typeWriter('\n\n  The Virtual World is Generating')
-        typeWriter('...\n\n', lag=1)
-        world = Underworld(user)
-        user_result = world.run()
-    elif chosen_path == 'C':
-        typeWriter('\nYou have been teleported to The Jungle')
-        typeWriter('\n\n  The Virtual World is Generating')
-        typeWriter('...\n\n', lag=1)
-        world = Jungle(user)
-        user_result = world.run()
-
-    # failure or final boss battle
+    getaway_challenge = getaway(user)
+    user_result = getaway_challenge.run()
     if user_result == 'failure':
+        death()
         typeWriter('\n\nThanks for playing!')
-        typeWriter('\n\nPlay again? (Y or N)\n')
+        typeWriter('\n\nPress Y to play again\n')
         playagain = input().upper()
-        if playagain:
+        if playagain == 'Y':
+            print('\n\n\n\n\n\n\n\n\n\n\n\n\n\n')
             main()
-
-    # final boss battle
     else:
-        typeWriter('\n\nYou activate the gem to return home')
-        typeWriter('..\n\n', lag=1)
-        typeWriter('What??? \nInstead of returning home, you are teleported to a strange'
-                   ' arena. \nLights flash on and you are ushered into the middle.'
-                   '\n\n"The next challenger is ')
-        typeWriter(user.returnName(), user = user)
-        typeWriter('! Let\'s see if he has what it takes to defeat the Grandmaster!"\n\n')
 
-        # user can fight the boss as many times as he/she wants
-        while True:
-            # run the final battle method
-            final_battle = FinalBoss(user)
-            user_result = final_battle.run()
+        chosen_path = choosePath(user)
+        user_result = ''
+        if chosen_path == 'A':
+            typeWriter('\nYou have been teleported to the Sky Kingdom')
+            typeWriter('\n\n  The Virtual World is Generating')
+            typeWriter('...\n\n', lag = 0.5)
+            world = SkyKingdom(user)
+            user_result = world.run()
+        elif chosen_path == 'B':
+            typeWriter('\nYou have been teleported to The Underworld')
+            typeWriter('\n\n  The Virtual World is Generating')
+            typeWriter('...\n\n', lag=1)
+            world = Underworld(user)
+            user_result = world.run()
+        elif chosen_path == 'C':
+            typeWriter('\nYou have been teleported to The Jungle')
+            typeWriter('\n\n  The Virtual World is Generating')
+            typeWriter('...\n\n', lag=1)
+            world = getaway(user)
+            user_result = world.run()
 
-            # if user dies
-            if user_result=="failure":
-                playagain = ''
-                # will user play again?
-                while playagain != 'Y' and playagain != 'N':
-                    typeWriter('\n\nFight the Boss again? (Y or N)\n')
-                    playagain = input().upper()
-                # user wants to play again; easter egg here (if user enters a number they get that many lives)
-                if playagain == 'Y':
-                    typeWriter('You get ready to battle. What\'s your battle cry? ')
-                    easter_egg = input()
-                    # try making user input into an int, if so easter egg! if not, continue w two lives
-                    try:
-                        val = int(easter_egg)
-                        if 0 < val < 11:
-                            user.resetLives(val)
-                            typeWriter('Congrats! You\'ve just gained ' + easter_egg + ' lives!\n\n')
-                        else:
+        # failure or final boss battle
+        if user_result == 'failure':
+            death()
+            typeWriter('\n\nThanks for playing!')
+            typeWriter('\n\nPlay again? (Y or N)\n')
+            playagain = input().upper()
+            if playagain == 'Y':
+                print('\n\n\n\n\n\n\n\n\n\n\n\n\n\n')
+                main()
+
+        # final boss battle
+        else:
+            typeWriter('\n\nYou activate the gem to return home')
+            typeWriter('..\n\n', lag=1)
+            typeWriter('What??? \nInstead of returning home, you are teleported to a strange'
+                       ' arena. \nLights flash on and you are ushered into the middle.'
+                       '\n\n"The next challenger is ')
+            typeWriter(user.returnName(), user = user)
+            typeWriter('! Let\'s see if he has what it takes to defeat the Grandmaster!"\n\n')
+
+            # user can fight the boss as many times as he/she wants
+            while True:
+                # run the final battle method
+                final_battle = FinalBoss(user)
+                user_result = final_battle.run()
+
+                # if user dies
+                if user_result=="failure":
+                    playagain = ''
+                    # will user play again?
+                    while playagain != 'Y' and playagain != 'N':
+                        typeWriter('\n\nFight the Boss again? (Y or N)\n')
+                        playagain = input().upper()
+                    # user wants to play again; easter egg here (if user enters a number they get that many lives)
+                    if playagain == 'Y':
+                        typeWriter('You get ready to battle. What\'s your battle cry? ')
+                        easter_egg = input()
+                        # try making user input into an int, if so easter egg! if not, continue w two lives
+                        try:
+                            val = int(easter_egg)
+                            if 0 < val < 11:
+                                user.resetLives(val)
+                                typeWriter('Congrats! You\'ve just gained ' + easter_egg + ' lives!\n\n')
+                            else:
+                                typeWriter('Time to fight the Grandmaster again!')
+                                user.resetLives(2)
+                        except:
+                            typeWriter('\nYou shout "' + easter_egg + '" as you enter the arena.\n')
                             typeWriter('Time to fight the Grandmaster again!')
                             user.resetLives(2)
-                    except:
-                        typeWriter('\nYou shout "' + easter_egg + '" as you enter the arena.\n')
-                        typeWriter('Time to fight the Grandmaster again!')
-                        user.resetLives(2)
-                elif playagain == 'N':
+                    elif playagain == 'N':
+                        break
+                elif user_result == 'success':
+                    win()
                     break
-            elif user_result == 'success':
-                win(user)
-                break
 
 
 main()
