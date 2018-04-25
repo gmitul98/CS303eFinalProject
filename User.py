@@ -33,6 +33,7 @@ class User(object):
             self.stealth = 90
             self.health = 50
             self.changinghealth = 50
+            
     def returnName(self):
         return self.name
 
