@@ -12,7 +12,7 @@ class getaway(object):
         text = colored(text, color, attrs=['bold'])
         return text
 
-    def typeWriter(self, text, isColored=True, lag=config.lag, color = 'green'):
+    def typeWriter(self, text, isColored=True, lag=config.slow_lag, color = 'green'):
         text = list(str(text))
         if isColored:
             for letter in text:
@@ -56,7 +56,7 @@ class getaway(object):
                         '.\nYou climb onto the canoe and begin rowing towards the mainland.', isColored=True)
         self.typeWriter('\nYou row\nand row\nand row...')
         self.typeWriter('\n\nOh no!\nSKREEK! You hear the deathly shriek of a weird, giant fish monster.'
-                        'Quick, row faster! It\'s chasing after you!', isColored=True)
+                        ' Quick, row faster! It\'s chasing after you!', isColored=True)
         user_result = self.rowGame()
 
         return user_result
@@ -66,9 +66,9 @@ class getaway(object):
         b = ''
         #counter = 0
         self.typeWriter('\nYou are tired, but you must make sure you keep rowing or else the creature will catch you!'
-                        '\nYou don\'t know when your arms will give out, but when you do,'
+                        '\n\nYou don\'t know when your arms will give out, but when you do,'
                         '\nmake sure to Press ENTER to keep rowing!! \nIf you don\'t click fast enough,'
-                        ' the creature will catch you.')
+                        ' the creature will catch you.',lag=0.06)
         while True:
             self.typeWriter('\n\nWhat difficulty would you like?\n\nA) Easy\nB) Medium\nC) Hard\nD) Insane\n', isColored=False)
             user_difficulty = input('\n').upper()
