@@ -1,6 +1,7 @@
 from User import User
 from termcolor import *
 import time
+import config
 
 class Underworld(object):
 
@@ -12,7 +13,7 @@ class Underworld(object):
         text = colored(text, color, attrs=['bold'])
         return text
 
-    def typeWriter(self, text, isColored=True, lag=0.02, color = 'red'):
+    def typeWriter(self, text, isColored=True, lag=config.lag, color = 'red'):
         text = list(str(text))
         if isColored:
             for letter in text:
@@ -45,7 +46,7 @@ class Underworld(object):
 
         self.typeWriter('\n\nA) Attempt close combat. \nB) Attempt ranged attack. \nC) Sneak past him.\n\n',isColored=False)
         while True:
-            user_choice = input()
+            user_choice = input().upper()
             if user_choice == 'A' or user_choice == 'B' or user_choice == 'C':
                 break
             else:
@@ -124,7 +125,7 @@ class Underworld(object):
         self.typeWriter('\n\nA) Destroy his army. \nB) Send in your dogs to '
                         'distract them while you ambush from the back. \nC) Kill and take his heart.\n\n',isColored=False)
         while True:
-            user_choice = input()
+            user_choice = input().upper()
             if user_choice == 'A' or user_choice == 'B' or user_choice == 'C':
                 break
             else:
@@ -202,5 +203,5 @@ class Underworld(object):
         else:
             self.typeWriter('\n\nWhile in the King\'s captivity, you regret your actions and ask to speak to'
                             ' the King. However, as merciless and destructive as he is, he decides to kill'
-                            ' you on the spot and devours your body and your friends\'', lag=0.02)
+                            ' you on the spot and devours your body and your friends\'')
 
