@@ -44,17 +44,19 @@ class FinalBoss(object):
     def grandmaster_damage(self, grandmaster_health, damage):
         grandmaster_health -= damage
         self.typeWriter('\nThe Grandmaster has taken ' + str(damage) + ' damage\n', isColored=True)
+        with open("GrandmasterHealth.txt", "r+") as x:
+            healthcodes=x.read().splitlines()
         if grandmaster_health>60:
-            self.typeWriter("You've barely made a dent, he smiles and charges at you again. ")
+            self.typeWriter(healthcodes[0])
+            print()
 
         elif grandmaster_health>30:
-            self.typeWriter("\nHis actions seem to be slowing as various wounds on his body bleed out. \nYou must keep "
-                            "fighting. He charges, no longer having that smirk on his face. ")
+            self.typeWriter(healthcodes[1]+"\n")
+            self.typeWriter(healthcodes[2]+"\n")
 
         elif grandmaster_health>0:
-            self.typeWriter("\nHe seems as if he is about to faint, but he picks himself back up. He looks at you with "
-                            "a deathly glare. \nThe world around you is fading closer to reality and freedom is within "
-                            "reach \n", isColored=True)
+            self.typeWriter(healthcodes[3] + "\n")
+            self.typeWriter(healthcodes[4] + "\n")
 
         return grandmaster_health
 
