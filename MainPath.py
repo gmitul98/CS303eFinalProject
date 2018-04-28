@@ -1,3 +1,7 @@
+#Importing other python files
+"""
+This part of the file imports all of the other files that we shall be using, each part referring to a different section of the game
+"""
 from User import User
 from SkyKingdom import SkyKingdom
 from Underworld import Underworld
@@ -9,20 +13,26 @@ import config
 
 
 # general task functions + non sequential functions
+#function definition
 def colorize(text, user_class):
+    #assignment statement
     text = colored(text, user_class.returnColor(), attrs=['bold'])
     return text
 
+#function defintion with parameters
 def boldIt(text):
     text = colored(text,attrs=['bold'])
     return text
 
+#function definition with default parameters
 def typeWriter(text, user = None, lag = config.lag, bold = False):
     text = list(str(text))
+#if statement
     if user == None:
         for letter in text:
             time.sleep(lag)
             if bold:
+                #function that calls another function
                 print((boldIt(letter)), end='', flush=True)
             else:
                 print(letter,end='',flush=True)
