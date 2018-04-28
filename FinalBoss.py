@@ -3,6 +3,7 @@ import time
 import random
 import config
 
+#class definition
 class FinalBoss(object):
 
     def __init__(self, user):
@@ -32,19 +33,26 @@ class FinalBoss(object):
                 break
             else:
                 self.typeWriter('Try typing something valid.\n')
-
-        directions=["A", "B", "C"]
+        
+        #tuple
+        directions=tuple("A", "B", "C")
+        #dictionary
+        dodgedirection={directions[0]:0,directions[1]:1,directions[2]:2}
+        #random number generator
         attackdirection=random.randint(0, 2)
         dodge=False
-        if directions.index(user_choice)==attackdirection:
+        if dodgedirection(user_choice)==attackdirection:
             dodge=True
 
         return dodge
 
     def grandmaster_damage(self, grandmaster_health, damage):
+        #-= statement
         grandmaster_health -= damage
         self.typeWriter('\nThe Grandmaster has taken ' + str(damage) + ' damage\n', isColored=True)
+        #reading a file
         with open("GrandmasterHealth.txt", "r+") as x:
+            #list created by reading file-a list
             healthcodes=x.read().splitlines()
         if grandmaster_health>60:
             self.typeWriter(healthcodes[0])
