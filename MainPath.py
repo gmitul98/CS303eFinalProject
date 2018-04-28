@@ -29,12 +29,15 @@ def typeWriter(text, user = None, lag = config.lag, bold = False):
     text = list(str(text))
 #if statement
     if user == None:
+        #for loop
         for letter in text:
             time.sleep(lag)
+            #nested if statement
             if bold:
                 #function that calls another function
                 print((boldIt(letter)), end='', flush=True)
             else:
+                #print statement
                 print(letter,end='',flush=True)
     else:
         for letter in text:
@@ -120,6 +123,7 @@ def choosePath(user_class):
                ' is one in each realm: \nSky Kingdom\nThe Underworld\n'
                'You know this is your one chance to return to reality.\n\n')
     chosen_path = ''
+    #While loop
     while chosen_path != 'A' and chosen_path != 'B':
         typeWriter('Which realm would you like to enter?'
                             '\n A) Sky Kingdom \n B) The Underworld\n\n')
@@ -166,6 +170,7 @@ def main():
         if chosen_path == 'A':
             typeWriter('\nYou have been teleported to the Sky Kingdom')
             typeWriter('\n\n  The Virtual World is Generating')
+            
             typeWriter('...\n\n', lag = 0.5)
             world = SkyKingdom(user)
             user_result = world.run()
@@ -197,6 +202,7 @@ def main():
             typeWriter('! Let\'s see if he has what it takes to defeat the Grandmaster!"\n\n')
 
             # user can fight the boss as many times as he/she wants
+            #nested loops
             while True:
                 # run the final battle method
                 final_battle = FinalBoss(user)
