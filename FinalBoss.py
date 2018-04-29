@@ -81,7 +81,7 @@ class FinalBoss(object):
 
         directions = ["A", "B", "C"]
         weakness = random.randint(0, 2)
-
+        #list index functionality(built in methods)
         if directions.index(user_choice) == weakness:
             damage=(float(self.user.returnDamage())*3)
             self.typeWriter('\nThe Grandmaster stumbles and stares at you in confusion, wondering how you knew that was '
