@@ -208,6 +208,7 @@ def main():
                 # run the final battle method
                 final_battle = FinalBoss(user)
                 user_result = final_battle.run()
+                #writing results to file
                 with open("Results.txt","a") as t:
                     t.write("\n"+user.returnName()+"  "+user_result.upper())
                     
@@ -223,6 +224,7 @@ def main():
                         typeWriter('You get ready to battle. What\'s your battle cry? ')
                         easter_egg = input()
                         # try making user input into an int, if so easter egg! if not, continue w two lives
+                        #try except block
                         try:
                             val = int(easter_egg)
                             if 0 < val < 11:
