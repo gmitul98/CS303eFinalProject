@@ -200,14 +200,17 @@ def main():
                        '\n\n"The next challenger is ')
             typeWriter(user.returnName(), user = user)
             typeWriter('! Let\'s see if he has what it takes to defeat the Grandmaster!"\n\n')
-
+            
+            
             # user can fight the boss as many times as he/she wants
             #nested loops
             while True:
                 # run the final battle method
                 final_battle = FinalBoss(user)
                 user_result = final_battle.run()
-
+                with open("Results.txt","a") as t:
+                    t.write("\n"+user.returnName()+"  "+user_result.upper())
+                    
                 # if user dies
                 if user_result=="failure":
                     playagain = ''
