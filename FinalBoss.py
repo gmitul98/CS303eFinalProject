@@ -35,13 +35,13 @@ class FinalBoss(object):
                 self.typeWriter('Try typing something valid.\n')
         
         #tuple
-        directions=tuple("A", "B", "C")
+        directions=("A", "B", "C")
         #dictionary
         dodgedirection={directions[0]:0,directions[1]:1,directions[2]:2}
         #random number generator
         attackdirection=random.randint(0, 2)
         dodge=False
-        if dodgedirection(user_choice)==attackdirection:
+        if dodgedirection[user_choice]==attackdirection:
             dodge=True
 
         return dodge
