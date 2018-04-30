@@ -75,7 +75,7 @@ def inciting_incident(username):
 def get_user_class_choice():
     user_choice = ''
     while user_choice != 'A' and user_choice != 'B' and user_choice != 'C':
-        typeWriter('A: Crossbow\nB: Magic Staff\nC: Poisoned Dagger\n\n')
+        typeWriter('A: Bow and Arrow\nB: Magic Staff\nC: Poisoned Dagger\n\n')
         user_choice = input().upper()
     return user_choice
 
